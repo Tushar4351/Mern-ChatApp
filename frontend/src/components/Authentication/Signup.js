@@ -57,7 +57,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/user",
+        "https://chat-webapp.onrender.com/api/user",
         { name, email, password, pic },
         config
       );
