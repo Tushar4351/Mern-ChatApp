@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Rubik:wght@300;400;500;600;700;800&display=swap");
+:root{
+  --color-D885A3: #D885A3;
+  --color-6096B4:#6096B4;
+  --color-black1:#353935;
+  --font-1:'Rubik', sans-serif;
+}
+.App {
+  min-height: 100vh;
+  display: flex;
+  background: linear-gradient(to right, rgb(92, 23, 167), rgb(71, 129, 230));
+  background-size: cover;
+  background-position: center;
+}
+.css-1r2nsmo{
+  background: #353935;
+}
+
+
+
+.chakra-container{
+  display: flex;
+  justify-content: center;
+align-items: center;
+}
+
+/*chakra-tabs__tab-panel*/
+.chakra-form-control{
+  height: 75px;
+}
+.Button-one{
+  background-color: var(--color-black1);
+  top: -6rem;
+}
+.Button-3{
+  
+  background-color: var(--color-D885A3);
+  top: -0.1rem;
+}
+.Button-two{
+  background-color: var(--color-6096B4);
+}
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.281);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
