@@ -5,6 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+const cors =require("cors")
 const path = require("path");
 
 dotenv.config();
@@ -12,7 +13,7 @@ connectDB();
 const app = express();
 
 app.use(express.json()); // to accept json data
-
+app.use(cors());
 // app.get("/", (req, res) => {
 //   res.send("API Running!");
 // });
@@ -28,11 +29,13 @@ const __dirname1 = path.resolve();
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname1, "/frontend/build")));
 
-  app.get("*", (req, res) =>
+  app.get("*", (req, res) => {
+    res.setHeader("Access-Control-Allow-Credentials","true");
     res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
-  );
+  });
 } else {
   app.get("/", (req, res) => {
+    res.setHeader("Access-Control-Allow-Credentials","true");
     res.send("API is running..");
   });
 }
