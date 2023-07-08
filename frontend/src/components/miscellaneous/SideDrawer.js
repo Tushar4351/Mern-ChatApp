@@ -98,8 +98,6 @@ function SideDrawer() {
   };
 
   const accessChat = async (userId) => {
-    console.log(userId);
-
     try {
       setLoadingChat(true);
       const config = {
@@ -113,8 +111,15 @@ function SideDrawer() {
         { userId },
         config
       );
-
-      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+  
+      if (!chats || !Array.isArray(chats)) {
+        setChats([data]);
+      } else {
+        if (!chats.find((c) => c._id === data._id)) {
+          setChats([data, ...chats]);
+        }
+      }
+  
       setSelectedChat(data);
       setLoadingChat(false);
       onClose();
@@ -129,6 +134,7 @@ function SideDrawer() {
       });
     }
   };
+  
 
   return (
     <>
