@@ -28,7 +28,7 @@ import { Spinner } from "@chakra-ui/spinner";
 
 import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
- import { getSender } from "../../config/ChatLogics";
+import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
 import ProfileModal from "./ProfileModel";
@@ -78,7 +78,10 @@ function SideDrawer() {
         },
       };
 
-      const { data } = await axios.get(`https://chat-webapp.onrender.com/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `https://chat-webapp.onrender.com/api/user?search=${search}`,
+        config
+      );
 
       setLoading(false);
       setSearchResult(data);
@@ -105,7 +108,11 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/api/chat`, { userId }, config);
+      const { data } = await axios.post(
+        `https://chat-webapp.onrender.com/api/chat`,
+        { userId },
+        config
+      );
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
@@ -137,12 +144,16 @@ function SideDrawer() {
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
-            <Text display={{ base: "none", md: "flex" }} px={4} fontFamily="Rubik">
+            <Text
+              display={{ base: "none", md: "flex" }}
+              px={4}
+              fontFamily="Rubik"
+            >
               Search User
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily='Rubik'>
+        <Text fontSize="2xl" fontFamily="Rubik">
           Chat-Web-App
         </Text>
         <div>
@@ -185,7 +196,9 @@ function SideDrawer() {
                 <MenuItem fontFamily="Rubik">My Profile</MenuItem>{" "}
               </ProfileModal>
               <MenuDivider />
-              <MenuItem fontFamily="Rubik" onClick={logoutHandler}>Logout</MenuItem>
+              <MenuItem fontFamily="Rubik" onClick={logoutHandler}>
+                Logout
+              </MenuItem>
             </MenuList>
           </Menu>
         </div>
@@ -194,7 +207,9 @@ function SideDrawer() {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px" fontFamily="Rubik">Search Users</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px" fontFamily="Rubik">
+            Search Users
+          </DrawerHeader>
           <DrawerBody>
             <Box display="flex" pb={2}>
               <Input
@@ -204,7 +219,9 @@ function SideDrawer() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button fontFamily="Rubik" onClick={handleSearch}>Go</Button>
+              <Button fontFamily="Rubik" onClick={handleSearch}>
+                Go
+              </Button>
             </Box>
             {loading ? (
               <ChatLoading />
@@ -217,7 +234,7 @@ function SideDrawer() {
                 />
               ))
             )}
-           {loadingChat && <Spinner ml="auto" display="flex" />}
+            {loadingChat && <Spinner ml="auto" display="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
